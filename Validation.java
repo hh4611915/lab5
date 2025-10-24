@@ -1,6 +1,6 @@
 public class Validation {
     public boolean nameValidaion(String name) {
-        if (name == null)
+        if (name == null || name.trim().isEmpty())
             return false;
         for (int i = 0; i < name.length(); i++) {
             if (!Character.isLetter(name.charAt(i)))
