@@ -2,7 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        StudentDatabase db = new StudentDatabase("students.txt");
+        /*StudentDatabase db = new StudentDatabase("students.txt");
 
         db.readFromFile();
 
@@ -11,7 +11,9 @@ public class Main {
 
         db.saveToFile();
 
-        db.viewAll();
+        db.viewAll();*/
+        new AddStudent();
+
     }
 }
 
