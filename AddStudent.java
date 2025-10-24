@@ -11,6 +11,7 @@ public class AddStudent extends JFrame {
     private JTextField textDeparment;
     private JTextField textGPA;
     private JButton addButton;
+    private JButton backButton;
     private Validation v = new Validation();
 
     public AddStudent() {
@@ -77,6 +78,13 @@ public class AddStudent extends JFrame {
                 else return;
 
 
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //new Menu() should go back when we make menu
+                setVisible(false);
             }
         });
     }

@@ -9,7 +9,13 @@ public class StudentDatabase {
         this.filename = filename;
         this.students = new ArrayList<>();
     }
-
+    public Student[] studentList(){
+        Student[] s = new Student[students.size()];
+        for(int i = 0;i<students.size();i++){
+            s[i]=students.get(i);
+        }
+        return s;
+    }
     public void addStudent(String name, int age, String gender, String department, double gpa) {
         Student s = new Student(name, age, gender, department, gpa);
         students.add(s);

@@ -1,3 +1,5 @@
+import javax.swing.text.View;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -12,8 +14,8 @@ public class Main {
         db.saveToFile();
 
         db.viewAll();*/
-        new AddStudent();
-
+        //new AddStudent();
+        new ViewStudent();
     }
 }
 

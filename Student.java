@@ -16,6 +16,34 @@ public class Student {
         this.gpa = gpa;
     }
 
+    public static int getCounter() {
+        return counter;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public double getGpa() {
+        return gpa;
+    }
+
     public String getLine() {
         return id + "," + name + "," + age + "," + gender + "," + department + "," + gpa;
     }
