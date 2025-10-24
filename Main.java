@@ -15,7 +15,7 @@ public class Main {
 
         db.viewAll();*/
         //new AddStudent();
-        new ViewStudent();
+        //new ViewStudent();
     }
 }
 
