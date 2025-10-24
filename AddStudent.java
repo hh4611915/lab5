@@ -20,6 +20,7 @@ public class AddStudent extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(p1);
         setLocationRelativeTo(null);
+        setTitle("Add Student Menu");
 
 
         addButton.addActionListener(new ActionListener() {
