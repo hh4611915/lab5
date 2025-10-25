@@ -10,6 +10,7 @@ public class ViewStudent extends JFrame {
     private StudentDatabase sb = new StudentDatabase("students.txt");
 
     public ViewStudent() {
+        boolean flag = false;
         setVisible(true);
         setSize(500,500);
         setLocationRelativeTo(null);
@@ -24,8 +25,12 @@ public class ViewStudent extends JFrame {
             Object[] rows = {students[i].getId(),students[i].getName(),students[i].getAge(),students[i].getGender()
                     ,students[i].getDepartment(),students[i].getGpa()};
             table.addRow(rows);
+            flag = true;
         }
         table1.setModel(table);
+        if(!flag){
+            JOptionPane.showMessageDialog(null,"There is no students in the file");
+        }
 
 
         backButton.addActionListener(new ActionListener() {
