@@ -21,6 +21,7 @@ public class AddStudent extends JFrame {
         setTitle("Add Student Menu");
         setContentPane(p1);
         setLocationRelativeTo(null);
+        setTitle("Add Student Menu");
 
 
         addButton.addActionListener(new ActionListener() {
