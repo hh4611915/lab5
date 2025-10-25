@@ -18,6 +18,7 @@ public class AddStudent extends JFrame {
         setVisible(true);
         setSize(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Add Student Menu");
         setContentPane(p1);
         setLocationRelativeTo(null);
 

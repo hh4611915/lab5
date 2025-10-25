@@ -14,7 +14,7 @@ public class Main {
         db.saveToFile();
 
         db.viewAll();*/
-        //new AddStudent();
+        new AddStudent();
         //new ViewStudent();
     }
 }
