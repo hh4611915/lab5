@@ -11,7 +11,6 @@ public class ViewStudent extends JFrame {
 
     public ViewStudent() {
         boolean flag = false;
-        setVisible(true);
         setSize(500,500);
         setLocationRelativeTo(null);
         setContentPane(panel1);
@@ -27,11 +26,13 @@ public class ViewStudent extends JFrame {
             table.addRow(rows);
             flag = true;
         }
-        table1.setModel(table);
         if(!flag){
             JOptionPane.showMessageDialog(null,"There is no students in the file");
+            new DashboardFrame();
         }
-
+        else{
+        table1.setModel(table);
+        setVisible(true);
 
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -40,6 +41,7 @@ public class ViewStudent extends JFrame {
                 setVisible(false);
             }
         });
+        }
     }
     }
 
