@@ -31,7 +31,7 @@ public class ViewStudent extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //new Menu() when u add menu it should go back
+                new DashboardFrame();
                 setVisible(false);
             }
         });

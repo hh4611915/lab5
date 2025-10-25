@@ -34,12 +34,12 @@ public class DashboardFrame extends JFrame {
         // 🔹 Button actions
         addButton.addActionListener(e -> {
             dispose();
-           // new AddPage();
+            new AddStudent();
         });
 
         viewButton.addActionListener(e -> {
             dispose();
-           // new ViewPage();
+            new ViewStudent();
         });
 
         searchButton.addActionListener(e -> {
