@@ -6,3 +6,4 @@
 6,khaled,21,Male,Mecha,3.6
 7,fares,20,Male,compu,4.0
 8,ahmed,20,Male,IT,4.0
+9,tawfeek,20,Male,CCE,4.0

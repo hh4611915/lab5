@@ -40,7 +40,7 @@ public class LoginFrame extends JFrame {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            if (username.equals("hamza") && password.equals("123")) {
+            if ((username.equals("hamza") && password.equals("123"))||(username.equals("fares") && password.equals("2005"))){
                 JOptionPane.showMessageDialog(this, "Login successful!");
                 dispose(); // Close login window
                 new DashboardFrame(); // Open dashboard
