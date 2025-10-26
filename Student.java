@@ -47,6 +47,34 @@ public class Student {
         return gpa;
     }
 
+    public static void setCounter(int counter) {
+        Student.counter = counter;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
     public String getLine() {
         return id + "," + name + "," + age + "," + gender + "," + department + "," + gpa;
     }
