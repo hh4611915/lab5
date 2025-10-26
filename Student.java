@@ -15,6 +15,9 @@ public class Student {
         this.department = department;
         this.gpa = gpa;
     }
+    public void resetCounter(){
+        counter = 1;
+    }
 
     public static int getCounter() {
         return counter;

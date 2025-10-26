@@ -1,7 +1,8 @@
 1,Omar,20,Male,CS,3.5
 2,Sara,21,Female,IT,3.9
 3,fares,20,Male,compu,3.7
-4,ahmed,33,Male,cop,4.0
-5,tharwat,19,Male,Mecha,3.0
-6,khaled,21,Male,Mecha,3.6
-7,fares,20,Male,compu,4.0
+4,tharwat,19,Male,Mecha,3.0
+5,khaled,21,Male,Mecha,3.6
+7,ahmed,20,Male,IT,4.0
+8,Omar,20,Male,CS,3.5
+9,Sara,21,Female,IT,3.9

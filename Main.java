@@ -4,16 +4,19 @@ import javax.swing.text.View;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        /*StudentDatabase db = new StudentDatabase("students.txt");
+        //StudentDatabase db = new StudentDatabase("students.txt");
 
-        db.readFromFile();
+        //db.readFromFile();
 
-        db.addStudent("Omar", 20, "Male", "CS", 3.5);
-        db.addStudent("Sara", 21, "Female", "IT", 3.9);
+        //db.addStudent("Omar", 20, "Male", "CS", 3.5);
+        //db.addStudent("Sara", 21, "Female", "IT", 3.9);
 
-        db.saveToFile();
+        //db.saveToFile();
 
-        db.viewAll();*/
+       // db.viewAll();
+        //db.deleteStudent(4);
+        //db.viewAll();
+        //db.viewAll();
         new LoginFrame();
         //new AddStudent();
         //new ViewStudent();

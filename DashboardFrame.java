@@ -53,7 +53,7 @@ public class DashboardFrame extends JFrame {
         });
         deleteButton.addActionListener(e -> {
             dispose();
-           // new DeletePage();
+            new deleteStudent();
         });
 
         setVisible(true);

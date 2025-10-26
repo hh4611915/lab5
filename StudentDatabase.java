@@ -9,6 +9,12 @@ public class StudentDatabase {
         this.filename = filename;
         this.students = new ArrayList<>();
     }
+
+    public void resetCounter(){
+        Student s = new Student(null,0,null,null,0);
+        s.resetCounter();
+    }
+
     public Student[] studentList(){
         Student[] s = new Student[students.size()];
         for(int i = 0;i<students.size();i++){
@@ -20,6 +26,22 @@ public class StudentDatabase {
         Student s = new Student(name, age, gender, department, gpa);
         students.add(s);
         System.out.println("Added: " + s.getLine());
+    }
+    public void deleteStudent(int studentId){
+        Student removeSt = null;
+        for(Student s:students){
+            if(s.getId()==studentId){
+                removeSt=s;
+                break;
+            }
+        }
+        if(removeSt!=null){
+            students.remove(removeSt);
+            System.out.println("Student with ID: " + studentId + "  deleted successfuly");
+            saveToFile();
+        }else{
+            System.out.println("Student with ID: " + studentId + "  was not found");
+        }
     }
 
     public void viewAll() {

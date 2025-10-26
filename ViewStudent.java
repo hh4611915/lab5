@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class ViewStudent extends JFrame {
     private JPanel panel1;
@@ -31,6 +32,7 @@ public class ViewStudent extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sb.resetCounter();
                 new DashboardFrame();
                 setVisible(false);
             }
