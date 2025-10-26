@@ -68,11 +68,13 @@ public class AddStudent extends JFrame {
                     sd.addStudent(name,age,gender,department,gpa);
                     sd.saveToFile();
                     JOptionPane.showMessageDialog(null,"Saved Successfully!");
+                    sd.resetCounter();
                     new DashboardFrame();
                     setVisible(false);
                 }
                 else if(choice == 1){
                     JOptionPane.showMessageDialog(null,"The progress was not saved!");
+                    sd.resetCounter();
                     new DashboardFrame();
                     setVisible(false);
                 }
@@ -84,6 +86,7 @@ public class AddStudent extends JFrame {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sd.resetCounter();
                 new DashboardFrame();
                 setVisible(false);
             }
