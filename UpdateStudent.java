@@ -1,217 +1,181 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author ASUS
- */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UpdateStudent extends javax.swing.JFrame {
-
-    /**
-     * Creates new form UpdateStudent
-     */
-     private JPanel panel1;
-    private JTextField textId;
-    private JTextField textName;
-    private JTextField textAge;
-    private JComboBox<String> comboGender;
-    private JTextField textDepartment;
-    private JTextField textGPA;
-    private JButton updateButton;
-    private JButton backButton;
+public class UpdateStudent extends JFrame {
+    private JPanel panel;
+    private JTextField searchField;
     private JButton searchButton;
-
+    private JTextField textName, textAge, textDepartment, textGPA;
+    private JComboBox comboGender;
+    private JButton updateButton, backButton;
     private StudentDatabase sb = new StudentDatabase("students.txt");
     private Validation v = new Validation();
+    private Student currentStudent;
 
     public UpdateStudent() {
-        initComponents();
-
-        setTitle("Update Student");
-        setSize(500, 500);
+        setSize(500, 550);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Update Student");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        if (panel == null) {
+            panel = new JPanel();
+            panel.setLayout(null);
+
+            JLabel searchLabel = new JLabel("Enter Student ID to search:");
+            searchLabel.setBounds(30, 20, 180, 25);
+            panel.add(searchLabel);
+
+            searchField = new JTextField();
+            searchField.setBounds(210, 20, 150, 25);
+            panel.add(searchField);
+
+            searchButton = new JButton("Search");
+            searchButton.setBounds(370, 20, 80, 25);
+            panel.add(searchButton);
+
+            JLabel nameLabel = new JLabel("Name:");
+            nameLabel.setBounds(50, 70, 100, 25);
+            panel.add(nameLabel);
+
+            textName = new JTextField();
+            textName.setBounds(150, 70, 200, 25);
+            panel.add(textName);
+
+            JLabel ageLabel = new JLabel("Age:");
+            ageLabel.setBounds(50, 110, 100, 25);
+            panel.add(ageLabel);
+
+            textAge = new JTextField();
+            textAge.setBounds(150, 110, 200, 25);
+            panel.add(textAge);
+
+            JLabel genderLabel = new JLabel("Gender:");
+            genderLabel.setBounds(50, 150, 100, 25);
+            panel.add(genderLabel);
+
+            comboGender = new JComboBox(new String[]{"Male", "Female"});
+            comboGender.setBounds(150, 150, 200, 25);
+            panel.add(comboGender);
+
+            JLabel deptLabel = new JLabel("Department:");
+            deptLabel.setBounds(50, 190, 100, 25);
+            panel.add(deptLabel);
+
+            textDepartment = new JTextField();
+            textDepartment.setBounds(150, 190, 200, 25);
+            panel.add(textDepartment);
+
+            JLabel gpaLabel = new JLabel("GPA:");
+            gpaLabel.setBounds(50, 230, 100, 25);
+            panel.add(gpaLabel);
+
+            textGPA = new JTextField();
+            textGPA.setBounds(150, 230, 200, 25);
+            panel.add(textGPA);
+
+            updateButton = new JButton("Update");
+            updateButton.setBounds(150, 280, 100, 30);
+            panel.add(updateButton);
+
+            backButton = new JButton("Back");
+            backButton.setBounds(260, 280, 100, 30);
+            panel.add(backButton);
+        }
+
+        setContentPane(panel);
         setVisible(true);
 
+        sb.readFromFile();
+
         searchButton.addActionListener(e -> {
-            sb.readFromFile();
-            String idText = textId.getText().trim();
+            String idText = searchField.getText().trim();
             if (idText.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Enter student ID to search!");
+                JOptionPane.showMessageDialog(null, "Enter an ID to search!");
                 return;
             }
-            int id = Integer.parseInt(idText);
-            for (Student s : sb.studentList()) {
-                if (s.getId() == id) {
-                    textName.setText(s.getName());
-                    textAge.setText(String.valueOf(s.getAge()));
-                    comboGender.setSelectedItem(s.getGender());
-                    textDepartment.setText(s.getDepartment());
-                    textGPA.setText(String.valueOf(s.getGpa()));
-                    return;
-                }
-            }
-            JOptionPane.showMessageDialog(null, "Student not found!");
-        });
-
-        updateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sb.readFromFile();
-                String idText = textId.getText().trim();
-                if (idText.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Enter ID first!");
-                    return;
-                }
-
+            try {
                 int id = Integer.parseInt(idText);
-                String name = textName.getText();
-                String dept = textDepartment.getText();
-                String gender = comboGender.getSelectedItem().toString();
-                String ageText = textAge.getText();
-                String gpaText = textGPA.getText();
-
-                if (!v.nameValidaion(name) || !v.ageValidaion(ageText) || !v.nameValidaion(dept) || !v.gpaValidaion(gpaText)) {
-                    JOptionPane.showMessageDialog(null, "Invalid input data!");
-                    return;
-                }
-
-                int age = Integer.parseInt(ageText);
-                double gpa = Double.parseDouble(gpaText);
-                sb.readFromFile();
-                Student[] arr = sb.studentList();
-                for (int i = 0; i < arr.length; i++) {
-                    if (arr[i].getId() == id) {
-                        arr[i] = new Student(name, age, gender, dept, gpa);
-                        JOptionPane.showMessageDialog(null, "Updated Successfully!");
-                        sb.saveToFile();
-                        return;
+                currentStudent = null;
+                for (Student s : sb.studentList()) {
+                    if (s.getId() == id) {
+                        currentStudent = s;
+                        break;
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Student not found!");
+                if (currentStudent == null) {
+                    JOptionPane.showMessageDialog(null, "Student not found!");
+                } else {
+                    textName.setText(currentStudent.getName());
+                    textAge.setText(String.valueOf(currentStudent.getAge()));
+                    comboGender.setSelectedItem(currentStudent.getGender());
+                    textDepartment.setText(currentStudent.getDepartment());
+                    textGPA.setText(String.valueOf(currentStudent.getGpa()));
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Enter a valid numeric ID!");
             }
         });
 
-        backButton.addActionListener(e -> setVisible(false));
+        updateButton.addActionListener(e -> {
+            if (currentStudent == null) {
+                JOptionPane.showMessageDialog(null, "Search a student first!");
+                return;
+            }
+
+            String name = textName.getText();
+            if (!v.nameValidaion(name)) {
+                JOptionPane.showMessageDialog(null, "Enter a valid name!");
+                return;
+            }
+
+            String ageText = textAge.getText();
+            if (!v.ageValidaion(ageText)) {
+                JOptionPane.showMessageDialog(null, "Enter a valid age!");
+                return;
+            }
+            int age = Integer.parseInt(ageText);
+
+            Object genderObj = comboGender.getSelectedItem();
+            if (genderObj == null) {
+                JOptionPane.showMessageDialog(null, "Select a gender!");
+                return;
+            }
+            String gender = genderObj.toString();
+
+            String department = textDepartment.getText();
+            if (!v.nameValidaion(department)) {
+                JOptionPane.showMessageDialog(null, "Enter a valid department!");
+                return;
+            }
+
+            String gpaText = textGPA.getText();
+            if (!v.gpaValidaion(gpaText)) {
+                JOptionPane.showMessageDialog(null, "Enter a valid GPA!");
+                return;
+            }
+            double gpa = Double.parseDouble(gpaText);
+
+            int choice = JOptionPane.showConfirmDialog(null, "Do you want to save changes?");
+            if (choice == 0) {
+                currentStudent.setName(name);
+                currentStudent.setAge(age);
+                currentStudent.setGender(gender);
+                currentStudent.setDepartment(department);
+                currentStudent.setGpa(gpa);
+
+                sb.saveToFile();
+
+                JOptionPane.showMessageDialog(null, "Student updated successfully!");
+                new DashboardFrame();
+                setVisible(false);
+            }
+        });
+
+        backButton.addActionListener(e -> {
+            new DashboardFrame();
+            setVisible(false);
+        });
     }
-
-    private void initComponents() {
-        panel1 = new JPanel();
-        textId = new JTextField();
-        textName = new JTextField();
-        textAge = new JTextField();
-        comboGender = new JComboBox<>(new String[]{"Male", "Female"});
-        textDepartment = new JTextField();
-        textGPA = new JTextField();
-        updateButton = new JButton("Update");
-        backButton = new JButton("Back");
-        searchButton = new JButton("Search");
-
-        JLabel labelId = new JLabel("ID:");
-        JLabel labelName = new JLabel("Name:");
-        JLabel labelAge = new JLabel("Age:");
-        JLabel labelGender = new JLabel("Gender:");
-        JLabel labelDepartment = new JLabel("Department:");
-        JLabel labelGPA = new JLabel("GPA:");
-
-        GroupLayout layout = new GroupLayout(panel1);
-        panel1.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(labelId)
-                        .addComponent(labelName)
-                        .addComponent(labelAge)
-                        .addComponent(labelGender)
-                        .addComponent(labelDepartment)
-                        .addComponent(labelGPA))
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(textId)
-                        .addComponent(textName)
-                        .addComponent(textAge)
-                        .addComponent(comboGender)
-                        .addComponent(textDepartment)
-                        .addComponent(textGPA)))
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(searchButton)
-                    .addComponent(updateButton)
-                    .addComponent(backButton))
-        );
-
-        layout.setVerticalGroup(
-            layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelId)
-                    .addComponent(textId))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelName)
-                    .addComponent(textName))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAge)
-                    .addComponent(textAge))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelGender)
-                    .addComponent(comboGender))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDepartment)
-                    .addComponent(textDepartment))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelGPA)
-                    .addComponent(textGPA))
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchButton)
-                    .addComponent(updateButton)
-                    .addComponent(backButton))
-        );
-
-        setContentPane(panel1);
-        pack();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new UpdateStudent());
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-   
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
 }
