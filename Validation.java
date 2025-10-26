@@ -3,7 +3,7 @@ public class Validation {
         if (name == null || name.trim().isEmpty())
             return false;
         for (int i = 0; i < name.length(); i++) {
-            if (!Character.isLetter(name.charAt(i)))
+            if (!Character.isLetter(name.charAt(i))&&name.charAt(i)!=' ')
                 return false;
         }
         return true;
