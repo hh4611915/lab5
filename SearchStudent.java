@@ -10,6 +10,7 @@ public class SearchStudent extends JFrame {
     private StudentDatabase sb = new StudentDatabase("students.txt");
 
     public SearchStudent() {
+        setVisible(true);
         setSize(600, 500);
         setLocationRelativeTo(null);
         setTitle("Search Student");
@@ -65,8 +66,9 @@ public class SearchStudent extends JFrame {
             table.setModel(model);
         });
 
-        backButton.addActionListener(e -> setVisible(false));
-        new DashboardFrame();
-        setVisible(true);
+        backButton.addActionListener(e -> {
+            new DashboardFrame();
+            setVisible(false);});
+
     }
 }

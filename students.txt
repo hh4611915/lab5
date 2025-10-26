@@ -2,3 +2,4 @@
 2,fares,20,Male,compu,3.7
 3,tharwat,19,Male,Mecha,3.0
 4,tharwat,20,Male,cce,3.7
+5,Amr Rafik,20,Female,CCE,3.11
